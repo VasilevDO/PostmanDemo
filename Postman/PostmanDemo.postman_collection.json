@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "849bea0a-5817-4e5e-92ab-cd49a112ab26",
+		"name": "PostmanDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ping tests",
+			"item": [
+				{
+					"name": "Basic",
+					"item": [
+						{
+							"name": "GET request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Valid data sent\", function () {\r",
+											"    const jsonData=pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql('GET response');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}{{PING_ROUTE}}",
+									"host": [
+										"{{API_URL}}{{PING_ROUTE}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Valid data sent\", function () {\r",
+											"    const jsonData=pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql('wkek');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\":\"kekw\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}{{PING_ROUTE}}",
+									"host": [
+										"{{API_URL}}{{PING_ROUTE}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Negative",
+					"item": [
+						{
+							"name": "POST EMPTY REQUEST",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Error message sent\", function () {\r",
+											"    const jsonData=pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql('Invalid request body');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Valid status sent\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}{{PING_ROUTE}}",
+									"host": [
+										"{{API_URL}}{{PING_ROUTE}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 1000ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+					"});"
+				]
+			}
+		}
+	]
+}

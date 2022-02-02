@@ -1,0 +1,26 @@
+{
+  "name": "postmandemo",
+  "version": "1.0.0",
+  "description": "little demo of postman functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js",
+    "dev": "cross-env NODE_ENV=development \"npm run server\""
+  },
+  "keywords": [
+    "postman"
+  ],
+  "author": "pwnzf",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "config": "^3.3.7",
+    "dotenv": "^15.0.0",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.15"
+  }
+}
